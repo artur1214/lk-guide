@@ -77,8 +77,8 @@ def index(request):
 <?php
 $USER_ID = 40; // ID клиента в системе priceplan полученное где-то выше
 
-$MANAGER_LOGIN = "priceplan";
-$MANAGER_PASSWORD = "priceplan";
+$MANAGER_LOGIN = "логин_менеджера";
+$MANAGER_PASSWORD = "пароль_менеджера";
 
 $SUBDOMAIN = "test";
 
