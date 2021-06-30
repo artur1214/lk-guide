@@ -75,9 +75,7 @@ def index(request):
 ### Пример кода на PHP (curl):
 ```php
 <?php
-
 $USER_ID = 40; // ID клиента в системе priceplan полученное где-то выше
-
 
 $MANAGER_LOGIN = "priceplan";
 $MANAGER_PASSWORD = "priceplan";
@@ -98,22 +96,18 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_URL, $LOGIN_TPL);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS,     $LOGIN_DATA );
-curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $LOGIN_DATA );
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 curl_setopt($ch, CURLOPT_COOKIEJAR, '/tmp/cookies.txt');
 curl_setopt($ch, CURLOPT_COOKIEFILE, '/tmp/cookies.txt');
 $res = curl_exec($ch);
-if (curl_error($ch)) {
-    echo curl_error($ch);
-}
-else{
-    curl_setopt($ch,CURLOPT_URL, sprintf($AUTH_KEY_GEN, $USER_ID));
 
-    $res = curl_exec($ch);
-    $auth_key = json_decode($res, true)['data']['key'];
+curl_setopt($ch,CURLOPT_URL, sprintf($AUTH_KEY_GEN, $USER_ID));
 
-    header ("Location: " . sprintf($REDIRECT_LINK, $auth_key));
-}
+$res = curl_exec($ch);
+$auth_key = json_decode($res, true)['data']['key'];
+
+header ("Location: " . sprintf($REDIRECT_LINK, $auth_key));
 
 ?>
 
